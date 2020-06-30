@@ -62,10 +62,20 @@
     display: inline;
     margin: 1.5em 1em;
     white-space: nowrap;
+    cursor: pointer;
   }
 
   input {
-    margin-left: 0.3em;
+    margin: 0;
+    margin-bottom: 0.15em;
+    height: 1em;
+    padding: 0;
+    border: 0;
+    vertical-align: bottom;
+    display: inline;
+  }
+
+  input[type="color"] {
     width: 2em;
   }
 
