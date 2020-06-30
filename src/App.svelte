@@ -33,6 +33,7 @@
 
   div#editor {
     width: 50%;
+    max-width: 45em;
     display: flex;
     flex-direction: column;
   }
@@ -45,7 +46,7 @@
   }
 
   h1 {
-    margin: auto 16rem auto 1rem;
+    margin: auto 3rem auto 1rem;
     padding: 0.15em 0;
     white-space: nowrap;
   }
@@ -86,6 +87,9 @@
     border: none;
     resize: none;
     padding: 1em;
+    font-family: monospace;
+    font-size: 16px;
+    background-color: #f5f5f5;
   }
 
   iframe {
