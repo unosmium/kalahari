@@ -3,8 +3,23 @@
 </script>
 
 <main>
-  <textarea>Hello {name}!</textarea>
-  <iframe></iframe>
+  <div id="editor">
+    <div id="topbar">
+      <h1>SciolyFF Editor</h1>
+      <div id="options">
+        <label>
+          <input type="checkbox">
+          Hide raw scores
+        </label>
+        <label>
+          <input type="color" value="#303030">
+          Theme color
+        </label>
+      </div>
+    </div>
+    <textarea>Hello {name}!</textarea>
+  </div>
+  <iframe title="Results output preview"></iframe>
 </main>
 
 <style>
@@ -16,21 +31,61 @@
     height: 100%;
 	}
 
-  textarea {
+  div#editor {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  div#topbar {
+    background-color: lightgreen;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    margin: auto 16rem auto 1rem;
+    white-space: nowrap;
+  }
+
+  div#options {
+    height: 4em;
+    background-color: lightblue;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+  }
+
+  div#options > label {
+    flex-grow: 1;
+    display: inline;
+    margin: 1.5em 1em;
+    white-space: nowrap;
+  }
+
+  input {
+    margin-left: 0.3em;
+    width: 2em;
+  }
+
+  textarea {
+    flex-grow: 1;
+    width: 100%;
     margin: 0;
     border: none;
     resize: none;
+    padding: 1em;
   }
 
   iframe {
     border: none;
+    flex-grow: 1;
   }
 
-
-	@media (max-width: 640px) {
+  @media (max-width: 640px) {
     main {
       width: 200vw;
     }
-	}
+  }
 </style>
