@@ -3,28 +3,34 @@
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+  <textarea>Hello {name}!</textarea>
+  <iframe></iframe>
 </main>
 
 <style>
 	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
 	}
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+  textarea {
+    width: 50%;
+    margin: 0;
+    border: none;
+    resize: none;
+  }
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+  iframe {
+    border: none;
+  }
+
+
+	@media (max-width: 640px) {
+    main {
+      width: 200vw;
+    }
 	}
 </style>
