@@ -46,11 +46,11 @@
 
   h1 {
     margin: auto 16rem auto 1rem;
+    padding: 0.15em 0;
     white-space: nowrap;
   }
 
   div#options {
-    height: 4em;
     background-color: lightblue;
     flex-grow: 1;
     display: flex;
@@ -60,7 +60,7 @@
   div#options > label {
     flex-grow: 1;
     display: inline;
-    margin: 1.5em 1em;
+    margin: 1em;
     white-space: nowrap;
     cursor: pointer;
   }
