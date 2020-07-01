@@ -1,5 +1,29 @@
 <script>
-	export let name;
+  export let editorContent;
+  export let generate_results;
+
+  let rawScores = false;
+  let themeColor = "#303030";
+  let url;
+
+  let timeout;
+  const debounceEditorContent = e => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => editorContent = e.target.value, 360);
+  };
+
+  $: {
+    if (url) {
+      URL.revokeObjectURL(url);
+    }
+    let results;
+    try {
+      results = generate_results(editorContent, rawScores, themeColor);
+    } catch {
+      results = "Invalid SciolyFF";
+    }
+    url = URL.createObjectURL(new Blob([results], {type : 'text/html'}));
+  }
 </script>
 
 <main>
@@ -8,18 +32,18 @@
       <h1>SciolyFF Editor</h1>
       <div id="options">
         <label>
-          <input type="checkbox">
+          <input type="checkbox" bind:checked={rawScores}>
           Hide raw scores
         </label>
         <label>
-          <input type="color" value="#303030">
+          <input type="color" bind:value={themeColor}>
           Theme color
         </label>
       </div>
     </div>
-    <textarea>Hello {name}!</textarea>
+    <textarea on:keyup={debounceEditorContent} value={editorContent}></textarea>
   </div>
-  <iframe title="Results output preview"></iframe>
+  <iframe src={url} title="Results output preview"></iframe>
 </main>
 
 <style>
