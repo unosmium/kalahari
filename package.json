@@ -17,7 +17,7 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
-    "sciolyff-web": "file:../sciolyff-web",
+    "sciolyff-web": "github:unosmium/sciolyff-web",
     "sirv-cli": "^0.4.4"
   }
 }
