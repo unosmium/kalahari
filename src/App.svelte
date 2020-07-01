@@ -12,6 +12,12 @@
     timeout = setTimeout(() => editorContent = e.target.value, 360);
   };
 
+  let timeout2;
+  const debounceThemeColor = e => {
+    clearTimeout(timeout2);
+    timeout2 = setTimeout(() => themeColor = e.target.value, 360);
+  };
+
   $: {
     if (url) {
       URL.revokeObjectURL(url);
@@ -36,7 +42,7 @@
           Hide raw scores
         </label>
         <label>
-          <input type="color" bind:value={themeColor}>
+          <input type="color" on:input={debounceThemeColor}>
           Theme color
         </label>
       </div>
