@@ -1,5 +1,5 @@
 import svelte from 'rollup-plugin-svelte';
-import { wasm } from '@rollup/plugin-wasm';
+import rust from "@wasm-tool/rollup-plugin-rust";
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
@@ -26,7 +26,9 @@ export default {
 			}
 		}),
 
-    wasm(),
+    rust({
+      serverPath: "/build/"
+    }),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
