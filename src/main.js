@@ -1,6 +1,15 @@
 import App from './App.svelte';
 import wasm from 'sciolyff-web/Cargo.toml';
 
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/serviceworker.js').then(r => {
+      console.log('ServiceWorker registration successful w/ scope: ', r.scope);
+    }, err => console.log('ServiceWorker registration failed: ', err));
+  });
+}
+
 const init = async () => {
   const exports = await wasm();
   const app = new App({

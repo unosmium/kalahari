@@ -1,0 +1,16 @@
+{
+  "name": "Kalahari SciolyFF Editor",
+  "short_name": "Kalahari",
+  "description": "Generate Science Olympiad result pages from SciolyFF",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "display": "minimal-ui",
+  "theme_color": "green",
+  "background_color": "lightgreen"
+}
