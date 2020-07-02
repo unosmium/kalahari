@@ -26,12 +26,27 @@
     try {
       results = generate_results(editorContent, rawScores, themeColor);
     } catch {
-      results = "Invalid SciolyFF";
+      results = "Failed to parse, probably invalid SciolyFF";
     }
     url = URL.createObjectURL(new Blob([results], {type : 'text/html'}));
   }
+
+  import Switch from '@mbeineris/svelte-switch';
+  import { afterUpdate } from 'svelte';
+
+  let preview = false;
+  let wrapper;
+
+  afterUpdate(() => {
+    if (preview) {
+      wrapper.scrollLeft = 1000;
+    } else {
+      wrapper.scrollLeft = 0;
+    }
+  })
 </script>
 
+<div id="subway" bind:this={wrapper}>
 <main>
   <div id="editor">
     <div id="topbar">
@@ -51,8 +66,18 @@
   </div>
   <iframe src={url} title="Results output preview"></iframe>
 </main>
+<div id="toggle">
+  <span class={preview ? '' : 'selected'}>Input</span>
+  <Switch bind:checked={preview}></Switch>
+  <span class={preview ? 'selected' : ''}>Output</span>
+</div>
+</div>
 
 <style>
+  div#subway {
+    height: 100%;
+  }
+
 	main {
     margin: 0;
     padding: 0;
@@ -127,9 +152,40 @@
     flex-grow: 1;
   }
 
+  div#toggle {
+    display: none;
+  }
+
   @media (max-width: 640px) {
+    div#subway {
+      width: 100vw;
+      overflow: hidden;
+    }
+
     main {
       width: 200vw;
+      height: calc(100% - 4em);
+    }
+
+    div#toggle {
+      background-color: #DDD;
+      display: block;
+      height: 4em;
+      position: fixed;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    div#toggle > span {
+      margin: 1em;
+    }
+
+    span.selected {
+      text-decoration: underline;
+      font-weight: bold;
     }
   }
 </style>
