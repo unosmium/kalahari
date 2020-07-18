@@ -50,7 +50,9 @@
 <main>
   <div id="editor">
     <div id="topbar">
-      <h1>SciolyFF Editor</h1>
+      <h1>
+        <a href="https://github.com/unosmium/kalahari">SciolyFF Editor</a>
+      </h1>
       <div id="options">
         <label>
           <input type="checkbox" bind:checked={rawScores}>
