@@ -1,4 +1,4 @@
-const version = '0.1.1';
+const version = '0.1.2';
 const cacheKey = `kalahari-v${version}`;
 
 self.addEventListener('install', e => {
@@ -19,11 +19,8 @@ self.addEventListener('install', e => {
 
 self.addEventListener('activate', e => {
   e.waitUntil((async () => {
-    for (let key of await caches.keys()) {
-      if (key !== cacheKey) {
-        caches.delete(key);
-      }
-    }
+    let oldKeys = (await caches.keys()).filter(key => key !== cacheKey);
+    await Promise.all(oldKeys.map(key => caches.delete(key)));
   })());
 });
 
