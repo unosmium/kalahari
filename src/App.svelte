@@ -44,6 +44,8 @@
       wrapper.scrollLeft = 0;
     }
   })
+
+  let version = caches.keys().then(keys => keys[0].split('-').pop());
 </script>
 
 <div id="subway" bind:this={wrapper}>
@@ -51,7 +53,9 @@
   <div id="editor">
     <div id="topbar">
       <h1>
-        <a href="https://github.com/unosmium/kalahari">SciolyFF Editor</a>
+        <a href="https://github.com/unosmium/kalahari">
+          Kalahari {#await version then val}{val}{:catch err}v???{/await}
+        </a>
       </h1>
       <div id="options">
         <label>
