@@ -13,6 +13,7 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
+		assetFileNames: '[name][extname]',
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
