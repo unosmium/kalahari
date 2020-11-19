@@ -1,24 +1,32 @@
+const version = 3;
+const cacheKey = `kalahari-v${version}`;
+
 self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open('kalahri-v2').then(cache => {
-      return cache.addAll([
-        '/',
-        '/index.html',
-        '/favicon.svg',
-        '/global.css',
-        '/kalahari.webmanifest',
-        '/build/bundle.css',
-        '/build/bundle.js',
-        '/build/sciolyff-web.wasm'
-      ]);
-    })
-  )
+  e.waitUntil((async () => {
+    let cache = await caches.open(cacheKey);
+    cache.addAll([
+      '/',
+      '/index.html',
+      '/favicon.svg',
+      '/global.css',
+      '/kalahari.webmanifest',
+      '/build/bundle.css',
+      '/build/bundle.js',
+      '/build/sciolyff-web.wasm'
+    ]);
+  })());
+});
+
+self.addEventListener('activate', async e => {
+  for (let key of await caches.keys()) {
+    if (key !== cacheKey) {
+      caches.delete(key);
+    }
+  }
 });
 
 self.addEventListener('fetch', e => {
-  e.respondWith(
-    caches.match(e.request).then(response => {
-      return response || fetch(e.request);
-    })
-  );
+  e.respondWith((async () => {
+    return await caches.match(e.request) || fetch(e.request);
+  })());
 });
