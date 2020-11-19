@@ -1,4 +1,4 @@
-const version = 3;
+const version = '0.1.0';
 const cacheKey = `kalahari-v${version}`;
 
 self.addEventListener('install', e => {
